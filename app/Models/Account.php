@@ -13,9 +13,9 @@ class Account extends Model
     protected $fillable = ['name', 'email', 'password', 'date_of_birth'];
 
     // Relationship: An account can have many forum topics
-    public function forums()
+    public function Blogs()
     {
-        return $this->hasMany(Forum::class);
+        return $this->hasMany(Blogs::class);
     }
 
     // Relationship: An account can have many comments

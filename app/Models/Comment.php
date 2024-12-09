@@ -9,21 +9,18 @@ class Comment extends Model
 {
     use HasFactory;
 
-    // Define the table if it's not the plural form of the model name
-    protected $table = 'comments'; 
+    protected $fillable = ['content', 'blog_id', 'account_id'];
 
-    // Define the fillable fields
-    protected $fillable = ['body', 'forum_id', 'account_id'];
-
-    // Relationship: A comment belongs to a forum topic
-    public function forum()
+    // Relationship: A comment belongs to a blog post
+    public function blog()
     {
-        return $this->belongsTo(Forum::class);
+        return $this->belongsTo(Blogs::class);
     }
 
-    // Relationship: A comment belongs to an account
-    public function account()
+    // Relationship: A comment belongs to a user (who wrote the comment)
+    public function Account()
     {
         return $this->belongsTo(Account::class);
     }
 }
+

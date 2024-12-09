@@ -8,14 +8,14 @@ class CreateCommentsTable extends Migration
     public function up()
     {
         Schema::create('comments', function (Blueprint $table) {
-            $table->id('comment_id'); // Primary Key
+            $table->id('id'); // Primary Key
             $table->text('description');
             $table->timestamps(); // Includes created_at and updated_at
-            $table->foreignId('blog_id') // Foreign Key
-                  ->constrained('blogs', 'blog_id')
+            $table->foreignId('blogs_id') // Foreign Key
+                  ->constrained('blogs', 'id')
                   ->onDelete('cascade');
             $table->foreignId('account_id') // Foreign Key
-                  ->constrained('accounts', 'account_id')
+                  ->constrained('accounts', 'id')
                   ->onDelete('cascade');
             $table->foreignId('parent_comment_id')->nullable(); // Self-referencing FK for nested comments
         });

@@ -14,8 +14,8 @@ class ForumController extends Controller
     public function index()
     {
         // Fetch all blog posts
-        $blogs = Blogs::all();
-        return view('forums.index', compact('blogs'));
+        $blog = Blogs::all();
+        return view('forums.index', compact('blog'));
     }
 
     /**
@@ -34,31 +34,57 @@ class ForumController extends Controller
         $validatedData = $request->validate([
             'header' => 'required|string|max:255',
             'description' => 'required|string',
+            'account_id' => 'required|string'
         ]);
 
         // Create a new blog post
         Blogs::create([
             'header' => $validatedData['header'],
             'description' => $validatedData['description'],
-            'account_id' => auth()->id(), // Assuming the user is logged in
+            'account_id' => $validatedData['account_id'],
         ]);
 
         return redirect()->route('forums.index')->with('success', 'Blog post created successfully!');
     }
+
+    public function storeComment(Request $request)
+    {
+        // Validate the incoming request
+        $validatedData = $request->validate([
+            'content' => 'required|string', // Ensure the content of the comment is required and a string
+            'blog_id' => 'required|exists:blogs,id', // Ensure the blog_id exists in the blogs table
+            'account_id' => 'required|string'
+
+        ]);
+    
+        // Create the new comment
+        Comment::create([
+            'content' => $validatedData['content'],
+            'blog_id' => $validatedData['blog_id'],
+            'account_id' => $validatedData['account_id']
+        ]);
+    
+        // Redirect back to the blog post page
+        return redirect()->route('forums.show', $validatedData['blog_id'])->with('success', 'Comment posted successfully!');
+    }
+    
+    
+
 
     /**
      * Display the specified blog post and its comments.
      */
     public function show(string $id)
     {
-        // Find the blog post
-        $blog = Blogs::findOrFail($id);
-
-        // Get comments for the blog post
+        // Fetch the blog post and eager load the associated Account and Comments
+        $blog = Blogs::with('account', 'comments.account')->findOrFail($id);
+    
+        // Get the comments for the blog post
         $comments = $blog->comments;
-
+    
         return view('forums.show', compact('blog', 'comments'));
     }
+    
 
     /**
      * Show the form for editing the specified blog post.

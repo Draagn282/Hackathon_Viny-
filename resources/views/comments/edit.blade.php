@@ -9,7 +9,6 @@
         @csrf
         <div class="form-group">
             <label for="header">Title:</label>
-            <input type="text" name="account_id" id="account_id" class="hidden" value="1" hidden>
             <input type="text" name="header" id="header" class="form-control" required>
         </div>
         <div class="form-group">
