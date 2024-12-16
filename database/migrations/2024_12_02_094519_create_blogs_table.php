@@ -8,12 +8,12 @@ class CreateBlogsTable extends Migration
     public function up()
     {
         Schema::create('blogs', function (Blueprint $table) {
-            $table->id('blog_id'); // Primary Key
+            $table->id('id'); // Primary Key
             $table->string('header');
             $table->text('description');
             $table->timestamps(); // Includes created_at and updated_at
             $table->foreignId('account_id') // Foreign Key
-                  ->constrained('accounts', 'account_id')
+                  ->constrained('accounts', 'id')
                   ->onDelete('cascade');
         });
     }

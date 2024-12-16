@@ -1,20 +1,46 @@
 @extends('layouts.app')
 
-@section('title', 'Create a New Topic')
+@section('title', $blog->header)
 
 @section('content')
-    <h1>Create a New Forum Topic</h1>
-    
-    <form action="{{ route('forums.store') }}" method="POST">
-        @csrf
-        <div class="form-group">
-            <label for="header">Title:</label>
-            <input type="text" name="header" id="header" class="form-control" required>
+    <div class="container">
+        <!-- Blog Post -->
+        <div class="post">
+            <h1>{{ $blog->header }}</h1>
+            <p>{{ $blog->description }}</p>
+            <p><strong>Posted by:</strong> {{ $blog->account->name }}</p> <!-- Access account's name -->
+            <a href="{{ route('forums.edit', $blog->id) }}" class="btn btn-secondary">Edit</a>
+            <form action="{{ route('forums.destroy', $blog->id) }}" method="POST" class="d-inline">
+                @csrf
+                @method('DELETE')
+                <button type="submit" class="btn btn-danger">Delete</button>
+            </form>
         </div>
-        <div class="form-group">
-            <label for="description">Description:</label>
-            <textarea name="description" id="description" class="form-control" required></textarea>
+
+        <hr>
+
+        <!-- Comments Section -->
+        <div class="comments">
+            <h3>Comments</h3>
+            @foreach ($comments as $comment)
+            {{-- @dd($comments, $comment) --}}
+                <div class="comment">
+                    <p><strong>{{ $comment->account->name }}:</strong> {{ $comment->description }}</p>
+                    <p><em>Posted on: {{ $comment->created_at}}</em></p>
+                </div>
+                <hr>
+            @endforeach
+
+        <!-- Add Comment Form -->
+        <h4>Add a Comment</h4>
+        <form action="{{ route('forums.storeComment') }}" method="POST">
+            @csrf
+            <input type="hidden" name="blogs_id" value="{{ $blog->id }}">
+            <input type="number" name="account_id" value="1">
+            <textarea name="content" class="form-control" rows="4" placeholder="Write your comment here" required></textarea>
+            <button type="submit" class="btn btn-primary mt-2">Post Comment</button>
+        </form>
+
         </div>
-        <button type="submit" class="btn btn-success mt-3">Create Topic</button>
-    </form>
+    </div>
 @endsection

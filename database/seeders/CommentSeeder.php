@@ -12,12 +12,12 @@ class CommentSeeder extends Seeder
         DB::table('comments')->insert([
             [
                 'description' => 'This is a great blog post!',
-                'blog_id' => 1, // Blog ID from BlogSeeder
+                'blogs_id' => 1, // Blog ID from BlogSeeder
                 'account_id' => 2, // Jane Smith
             ],
             [
                 'description' => 'Thanks for the insights!',
-                'blog_id' => 2, // Blog ID from BlogSeeder
+                'blogs_id' => 2, // Blog ID from BlogSeeder
                 'account_id' => 1, // John Doe
             ],
         ]);
