@@ -7,6 +7,11 @@
     <a href="{{ route('forums.create') }}" class="btn btn-primary">Create New Topic</a>
     
     <ul class="mt-3">
-        ...
+        @foreach ($blog as $blogs)
+            <li>
+                {{-- @dd($blog, $blogs) --}}
+                <a href="/forums/{{$blogs->id}}">{{ $blogs->header }}</a>
+            </li>
+        @endforeach
     </ul>
 @endsection
