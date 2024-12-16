@@ -12,9 +12,9 @@
     @yield('styles')
 </head>
 <body>
-    <div class="container mt-4">
+    <div class="mt-4">
         <!-- Navbar -->
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <nav class="navbar navbar-expand-lg tw-bg-customLightBrown px-5">
             <a class="navbar-brand" href="{{ url('/') }}">Forum</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>

@@ -9,12 +9,21 @@ export default {
         './resources/**/*.js',
         './resources/**/*.vue',
     ],
+    prefix: "tw-",
+    important: true,
     theme: {
         extend: {
             fontFamily: {
                 sans: ['Figtree', ...defaultTheme.fontFamily.sans],
             },
+            colors: {
+                customLightBrown: '#EC8922',
+                customDarkBrown: '#915018',
+            },
         },
     },
     plugins: [],
+    safelist: [{
+        pattern: /(bg|text|border)-custom(LightBrown|DarkBrown)/
+    }],
 };
