@@ -5,11 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Comment extends Model
+class Comments extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['content', 'blog_id', 'account_id'];
+    protected $fillable = ['description', 'blogs_id', 'account_id'];
 
     // Relationship: A comment belongs to a blog post
     public function blog()
@@ -18,7 +18,7 @@ class Comment extends Model
     }
 
     // Relationship: A comment belongs to a user (who wrote the comment)
-    public function Account()
+    public function account()
     {
         return $this->belongsTo(Account::class);
     }

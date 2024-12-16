@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Blogs; // Assuming you have a Blog model
-use App\Models\Comment; // Assuming you have a Comment model
+use App\Models\Comments; // Assuming you have a Comment model
 
 class ForumController extends Controller
 {
@@ -49,26 +49,20 @@ class ForumController extends Controller
 
     public function storeComment(Request $request)
     {
-        // Validate the incoming request
-        $validatedData = $request->validate([
-            'content' => 'required|string', // Ensure the content of the comment is required and a string
-            'blog_id' => 'required|exists:blogs,id', // Ensure the blog_id exists in the blogs table
-            'account_id' => 'required|string'
+        // dd($request);
 
-        ]);
-    
         // Create the new comment
-        Comment::create([
-            'content' => $validatedData['content'],
-            'blog_id' => $validatedData['blog_id'],
-            'account_id' => $validatedData['account_id']
-        ]);
-    
+        Comments::create([
+            'description' => $request['content'],
+            'blogs_id' => $request['blogs_id'],
+            'account_id' => $request['account_id']
+        ]);  
+        
         // Redirect back to the blog post page
-        return redirect()->route('forums.show', $validatedData['blog_id'])->with('success', 'Comment posted successfully!');
+        return redirect()->route('forums.index')->with('success', 'Blog post created successfully!');
     }
     
-    
+
 
 
     /**

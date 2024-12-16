@@ -21,7 +21,7 @@ class Account extends Model
     // Relationship: An account can have many comments
     public function comments()
     {
-        return $this->hasMany(Comment::class);
+        return $this->hasMany(Comments::class);
     }
 
     // Add any other necessary methods (like password hashing) here

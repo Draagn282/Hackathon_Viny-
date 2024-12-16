@@ -19,6 +19,6 @@ class Blogs extends Model
     // Relationship: A forum topic has many comments
     public function comments()
     {
-        return $this->hasMany(Comment::class);
+        return $this->hasMany(Comments::class);
     }
 }

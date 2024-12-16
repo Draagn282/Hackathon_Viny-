@@ -33,9 +33,10 @@
 
         <!-- Add Comment Form -->
         <h4>Add a Comment</h4>
-        <form action="{{ route('comments.store') }}" method="POST">
+        <form action="{{ route('forums.storeComment') }}" method="POST">
             @csrf
-            <input type="hidden" name="blog_id" value="{{ $blog->id }}">
+            <input type="hidden" name="blogs_id" value="{{ $blog->id }}">
+            <input type="number" name="account_id" value="1">
             <textarea name="content" class="form-control" rows="4" placeholder="Write your comment here" required></textarea>
             <button type="submit" class="btn btn-primary mt-2">Post Comment</button>
         </form>
