@@ -68,6 +68,10 @@ The Laravel framework is open-sourced software licensed under the [MIT license](
 ## Run
 
 Run in 2 terminals
-```php artisan serve```
+```
+php artisan serve
+```
 and
-```vite```
+```
+vite
+```
