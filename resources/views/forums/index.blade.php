@@ -31,7 +31,7 @@
                 <!-- List blogs for Beginnersgids -->
                 @forelse($beginnersBlog as $blog)
                     <li>
-                        <a href="{{ route('forums.show', $blog->id) }}" class="text-blue-500 hover:underline">{{ $blog->title }}</a>
+                        <a href="{{ route('forums.show', $blog->id) }}" class="text-blue-500 hover:underline">{{ $blog->header }}</a>
                     </li>
                 @empty
                     <li class="text-gray-500">Geen blogs gevonden.</li>
@@ -47,7 +47,7 @@
                 <!-- List blogs for Eigenaars Blogs -->
                 @forelse($ownersBlogs as $blog)
                     <li>
-                        <a href="{{ route('forums.show', $blog->id) }}" class="text-blue-500 hover:underline">{{ $blog->title }}</a>
+                        <a href="{{ route('forums.show', $blog->id) }}" class="text-blue-500 hover:underline">{{ $blog->header }}</a>
                     </li>
                 @empty
                     <li class="text-gray-500">Geen blogs gevonden.</li>
@@ -63,7 +63,7 @@
                 <!-- List blogs for Algemeen -->
                 @forelse($generalBlogs as $blog)
                     <li>
-                        <a href="{{ route('forums.show', $blog->id) }}" class="text-blue-500 hover:underline">{{ $blog->title }}</a>
+                        <a href="{{ route('forums.show', $blog->id) }}" class="text-blue-500 hover:underline">{{ $blog->header }}</a>
                     </li>
                 @empty
                     <li class="text-gray-500">Geen blogs gevonden.</li>
