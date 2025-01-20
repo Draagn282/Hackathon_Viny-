@@ -5,45 +5,41 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@yield('title', 'Laravel Forum')</title>
 
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
-    
+    @vite('resources/css/app.css')
+
     <!-- Additional CSS (optional) -->
     @yield('styles')
 </head>
-<body>
-    <div class="mt-4">
+<body class="bg-gray-100 text-gray-800">
+    <div class="min-h-screen flex flex-col">
         <!-- Navbar -->
-        <nav class="navbar navbar-expand-lg tw-bg-customLightBrown px-5">
-            <a class="navbar-brand" href="{{ url('/') }}">Forum</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav">
-                    <li class="nav-item">
-                        <a class="nav-link active" href="{{ route('forums.index') }}">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route('forums.create') }}">Create Topic</a>
-                    </li>
-                </ul>
+        <nav class="bg-customLightBrown px-5 py-4 shadow-md">
+            <div class="container mx-auto flex items-center justify-between">
+                <a class="text-lg font-bold text-white" href="{{ url('/') }}">Forum</a>
+                <button class="md:hidden text-white focus:outline-none" aria-label="Toggle navigation">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-6 h-6">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                    </svg>
+                </button>
+                <div class="hidden md:flex space-x-6">
+                    <a class="text-white hover:text-gray-300" href="{{ route('forums.index') }}">Home</a>
+                    <a class="text-white hover:text-gray-300" href="{{ route('forums.create') }}">Create Topic</a>
+                </div>
             </div>
         </nav>
 
         <!-- Page Content -->
-        @yield('content')
+        <main class="flex-grow">
+            @yield('content')
+        </main>
 
         <!-- Footer -->
-        <footer class="mt-5">
-            <div class="text-center">
+        <footer class="py-4">
+            <div class="text-center text-gray-400">
                 <p>&copy; 2024 Laravel Forum. All Rights Reserved.</p>
             </div>
         </footer>
     </div>
-
-    <!-- Bootstrap JS and dependencies -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
 
     <!-- Additional JS (optional) -->
     @yield('scripts')

@@ -9,7 +9,6 @@ export default {
         './resources/**/*.js',
         './resources/**/*.vue',
     ],
-    prefix: "tw-",
     important: true,
     theme: {
         extend: {

@@ -12,11 +12,15 @@ class ForumController extends Controller
      * Display a listing of the forums (blogs).
      */
     public function index()
-    {
-        // Fetch all blog posts
-        $blog = Blogs::all();
-        return view('forums.index', compact('blog'));
-    }
+{
+    // Filter data op basis van de specificaties
+    $beginnersBlog = Blogs::where('id', 1)->get(); // Alleen Blogs met id 1
+    $ownersBlogs = Blogs::where('account_id', 1)->get(); // Blogs van de ingelogde gebruiker
+    $generalBlogs = Blogs::all(); // Alle Blogs
+
+    // Doorsturen naar de view
+    return view('forums.index', compact('beginnersBlog', 'ownersBlogs', 'generalBlogs'));
+}
 
     /**
      * Show the form for creating a new blog post.
