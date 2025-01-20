@@ -4,10 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ForumController;
 
 // Home page route
-Route::get('/', function () {
-    return view('welcome');
-});
-Route::get('/forums', [ForumController::class, 'index'])->name('forums.index');
+Route::get('/', [ForumController::class, 'index'])->name('forums.index');
 Route::get('/forums/create', [ForumController::class, 'create'])->name('forums.create');
 Route::post('/forums/store', [ForumController::class, 'store'])->name('forums.store');
 Route::get('/forums/{id}', [ForumController::class, 'show'])->name('forums.show');
