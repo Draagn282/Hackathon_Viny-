@@ -10,7 +10,7 @@
         @foreach ($blog as $blogs)
             <li>
                 {{-- @dd($blog, $blogs) --}}
-                <a href="/forums/{{$blogs->id}}">{{ $blogs->header }}</a>
+                <a href="forums/{{$blogs->id}}">{{ $blogs->header }}</a>
             </li>
         @endforeach
     </ul>
