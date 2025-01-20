@@ -11,12 +11,12 @@ class BlogSeeder extends Seeder
     {
         DB::table('blogs')->insert([
             [
-                'header' => 'Introduction to Laravel',
+                'header' => 'Vinyls and you',
                 'description' => 'This blog post is all about getting started with Laravel.',
                 'account_id' => 1, // Assuming this corresponds to 'John Doe' in AccountSeeder
             ],
             [
-                'header' => 'Advanced Laravel Tips',
+                'header' => 'top 10 Weekly Vote',
                 'description' => 'Some advanced tips for working with Laravel efficiently.',
                 'account_id' => 2, // Assuming this corresponds to 'Jane Smith' in AccountSeeder
             ],
